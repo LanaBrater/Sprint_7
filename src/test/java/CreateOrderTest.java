@@ -12,44 +12,29 @@ import static org.hamcrest.Matchers.notNullValue;
 @RunWith(Parameterized.class)
 public class CreateOrderTest {
 
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String metroStation;
-    private String phone;
-    private int rentTime;
-    private String deliveryDate;
-    private String comment;
+    private String firstName = "Наруто";
+    private String lastName = "Узумаки";
+    private String address = "Москва";
+    private String metroStation = "Лубянка";
+    private String phone = "89991234567";
+    private int rentTime = 2;
+    private String deliveryDate = "01-05-2023";
+    private String comment = "ааа";
     private List<String> color;
 
-    public CreateOrderTest(String firstName, String lastName, String address, String metroStation,
-                                        String phone, int rentTime, String deliveryDate, String comment,
-                                        List<String> color) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.metroStation = metroStation;
-        this.phone = phone;
-        this.rentTime = rentTime;
-        this.deliveryDate = deliveryDate;
-        this.comment = comment;
+    public CreateOrderTest(List<String> color) {
         this.color = color;
     }
 
     @Parameterized.Parameters
     public static Object[][] getTestData() {
         return new Object[][]{
-                {"Наруто", "Узумаки", "Конохагакурэ 1", "Станция 1", "+79123456789", 1, "01-02-2023",
-                        "comment", List.of("Black")},
-                {"Sasuke", "Uchiha", "Konahagure 2", "Station 2", "8 912 345 67 89", 2, "01-03-2023",
-                        "", List.of("Gray")},
-                {"Сакура_123", "Харуно", "Конохагакурэ но Сато", "@#$%^", "89123456789", 3, "01-04-2023",
-                        "комментарий", List.of("Black", "Gray")},
-                {"!@#$%^&*()", "!@#$%^&*()", "Кадзэ но Куни", "", "+7(123)456789", 4, "01-05-2023",
-                        ";%:??", null},
+                {List.of("Black")},
+                { List.of("Gray")},
+                {List.of("Black", "Gray")},
+                {null},
         };
     }
-
 
     @Test
     @DisplayName("Успешное создание заказа с валидными данными")
@@ -60,5 +45,4 @@ public class CreateOrderTest {
                 .assertThat()
                 .body("track", notNullValue());
     }
-
 }

@@ -7,6 +7,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 
 public class CreateCourierTest {
+
     Courier courier;
     String id;
 
@@ -14,6 +15,7 @@ public class CreateCourierTest {
     public void setUp() {
         courier = Courier.generateCourierRandom();
     }
+
     @After
     public void cleanUp() {
         if (id != null) {
